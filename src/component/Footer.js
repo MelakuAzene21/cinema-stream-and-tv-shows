@@ -1,9 +1,12 @@
-import './Footer.css'
+import "./Footer.css";
+
 export default function Footer() {
     return (
-        <div className='footer'>
-<div>Movie App</div>
-<div>@2024 <span>Melaku Azene</span></div>
-        </div>
-    )
+        <footer className="footer">
+            <div className="footer-text">🎬 Movie App</div>
+            <div className="footer-copy">
+                &copy; 2024 <span className="highlight">Melaku Azene</span>
+            </div>
+        </footer>
+    );
 }

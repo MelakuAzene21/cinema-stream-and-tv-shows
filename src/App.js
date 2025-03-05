@@ -12,12 +12,14 @@ export default function App(){
        <Header/>
     <div className="container">
       <Switch>
-    <Route path="/" exact component={Home}  />
+                        <Route path="/" exact component={Home} />
+
     <Route path="/movie/:id"  component={MovieDetail} />
-    <Route path="/footer" component={Footer}  />
-    <Route component={PageNotFound}/>
+                        <Route component={PageNotFound} />
+                        
      </Switch>
                 </div>
+                <Footer/>
 </Router>
 
         </div>
