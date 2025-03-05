@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router,Switch,Route }  from "react-router-dom"
+import Home from "./component/Home"
+import Header from "./component/Header"
+import Footer from "./component/Footer"
+import MovieDetail from "./component/MovieDetail"
+import PageNotFound from "./component/PageNotFound"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App(){
+    return(
+        <div className="app">
+  <Router>
+       <Header/>
+    <div className="container">
+      <Switch>
+    <Route path="/" exact component={Home}  />
+    <Route path="/movie/:id"  component={MovieDetail} />
+    <Route path="/footer" component={Footer}  />
+    <Route component={PageNotFound}/>
+     </Switch>
+                </div>
+</Router>
+
+        </div>
+    )
 }
-
-export default App;
