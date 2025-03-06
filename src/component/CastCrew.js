@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./CastCrew.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
@@ -29,12 +30,15 @@ const CastCrew = ({ movieId }) => {
             <div className="cast-scroll">
                 {cast.map((actor) => (
                     <div key={actor.id} className="cast-card">
+                        {/* Link to Actor Profile */}
+                        <Link to={`/actor/${actor.id}`}>
                         <img
                             src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                             alt={actor.name}
                             className="cast-image"
                         />
-                        <p>{actor.name}</p>
+                            <p>{actor.name}</p>
+                            </Link>
                     </div>
                 ))}
             </div>
