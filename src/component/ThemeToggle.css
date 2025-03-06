@@ -1,0 +1,13 @@
+.theme-toggle {
+  padding: 8px 16px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-toggle:hover {
+  background: #555;
+}

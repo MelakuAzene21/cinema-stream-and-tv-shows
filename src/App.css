@@ -1,21 +1,12 @@
-:root{
-  --primary-color:#090e13;
-  --secondary-color:#18212a;
-  --font-primary:#ffffff;
-  --font-secondary:#73b5f3;
+/* Default Light Mode */
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  transition: all 0.3s ease-in-out;
 }
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family:'Courier New', Courier, monospace;
-}
-a{
-  text-decoration: none;
-}
-body{
-  background-color: var(--primary-color);
-}
-.contaner{
-  margin:0px 40px;
+
+/* Dark Mode */
+body.dark {
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
