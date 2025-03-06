@@ -40,12 +40,14 @@ import { useDispatch } from "react-redux";
 import { MovieListing } from "./MovieListing";
 import { addMovies } from "../features/movies/MoviesSlice";
 import axios from "axios";
+import { useState } from "react";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
-const totalPages = 3; // Fetch 3 pages (adjust based on requirement)
+const totalPages = 8; // Fetch 3 pages (adjust based on requirement)
 
 export default function Home() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -57,8 +59,12 @@ export default function Home() {
           allMovies = [...allMovies, ...response.data.results];
         }
         dispatch(addMovies(allMovies));
+        setLoading(false); // Stop loading after fetching movies
+
       } catch (error) {
         console.error(`Error fetching movies: ${error}`);
+        setLoading(false);
+
       }
     };
 
@@ -67,7 +73,7 @@ export default function Home() {
 
   return (
     <div className="banner-image">
-      <MovieListing />
+      <MovieListing loading={loading} />
     </div>
   );
 }
