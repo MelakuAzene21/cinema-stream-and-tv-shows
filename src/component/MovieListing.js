@@ -6,7 +6,6 @@ import './MovieListing.css'
    export const MovieListing=()=>{
 
     const movies=useSelector(getAllMovies);
-    console.log("movies fetched from store",movies);
     
 return(
     <div className="movie-wrapper">
