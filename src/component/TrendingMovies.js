@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "./TrendingMovies.css";
+import SkeletonMovieDetail from "./SkeletonMovieDetail";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
@@ -48,7 +49,7 @@ export default function TrendingMovies() {
         <div className="trending-section">
             <h2>🔥 Trending Movies</h2>
             {loading ? (
-                <div className="loading-trending">Loading...</div>
+                <div className="loading-trending"><SkeletonMovieDetail/></div>
             ) : (
                 <Slider {...settings}>
                     {trendingMovies.map((movie) => (

@@ -2,45 +2,74 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: var(--background-light);
+    background-color: #1f1f1f;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
 }
 
 .tv-show-header {
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .tv-show-poster-detail {
     width: 300px;
-    height: 450px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-right: 20px;
+    height: 375px;
+    border-radius: 8px;
+    margin-right: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .tv-show-info-detail {
     max-width: 700px;
-    color: var(--text-color-light);
+    color: #ccc;
+    display: flex;
+    flex-direction: column;
 }
 
 .tv-show-info-detail h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
     font-weight: bold;
+    color: #fff;
 }
 
 .tv-show-info-detail p {
     font-size: 1rem;
-    color: #ccc;
     margin-bottom: 10px;
+    line-height: 1.5;
 }
 
 .tv-show-info-detail strong {
-    color: #fff;
+    color: #ff6f61;
 }
 
+.tv-show-rating {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #ffbf00;
+}
+
+.watch-trailer-btn {
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.watch-trailer-btn:hover {
+    background-color: #ff4a3e;
+    transform: scale(1.05);
+}
 .tv-show-overview {
     font-size: 1.1rem;
     margin-top: 20px;

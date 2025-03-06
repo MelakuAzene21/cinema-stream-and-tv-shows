@@ -1,57 +1,10 @@
-// import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import axios from 'axios';
-// import './TVShowDetail.css'; // Add your styles for this page
-
-// const apiKey = 'b994fce496fc0f962a6908ff2a4ba539'; // Use your TMDB API key here
-
-// const TVShowDetail = () => {
-//     const { id } = useParams();
-//     const [show, setShow] = useState(null);
-
-//     useEffect(() => {
-//         const fetchTVShowDetail = async () => {
-//             try {
-//                 const response = await axios.get(
-//                     `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`
-//                 );
-//                 setShow(response.data);
-//             } catch (error) {
-//                 console.error('Error fetching TV show details:', error);
-//             }
-//         };
-
-//         fetchTVShowDetail();
-//     }, [id]);
-
-//     if (!show) return <div>Loading...</div>; // You can add a loader here
-
-//     return (
-//         <div className="tv-show-detail-container">
-//             <div className="tv-show-header">
-//                 <img
-//                     src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-//                     alt={show.name}
-//                     className="tv-show-poster-detail"
-//                 />
-//                 <div className="tv-show-info-detail">
-//                     <h1>{show.name}</h1>
-//                     <p>{show.overview}</p>
-//                     <p><strong>First Air Date:</strong> {show.first_air_date}</p>
-//                     <p><strong>Rating:</strong> {show.vote_average}</p>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default TVShowDetail;
-
 import { useEffect, useState } from 'react';
 import { useParams,Link } from 'react-router-dom';
 import axios from 'axios';
 import './TVShowDetail.css'; // Add your styles for this page
 import MovieModal from './MovieModal'; // Assuming MovieModal is used for trailers
+import SkeletonMovieDetail from './SkeletonMovieDetail';
+import CastCrew from './CastCrew.js';
 
 const apiKey = 'b994fce496fc0f962a6908ff2a4ba539'; // TMDB API key
 
@@ -98,7 +51,7 @@ const TVShowDetail = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    if (!show) return <div>Loading...</div>; // Loading state
+    if (!show) return <div><SkeletonMovieDetail/></div>; // Loading state
 
     return (
         <div className="tv-show-detail-container">
@@ -113,7 +66,7 @@ const TVShowDetail = () => {
                     <p>{show.overview}</p>
                     <p><strong>First Air Date:</strong> {show.first_air_date}</p>
                     <p><strong>Rating:</strong> {show.vote_average}</p>
-                    <button onClick={openModal}>Watch Trailer</button>
+                    <button onClick={openModal} className="watch-trailer-btn">Watch Trailer</button>
                 </div>
             </div>
 
@@ -136,7 +89,9 @@ const TVShowDetail = () => {
                                     <h3>{relatedShow.name}</h3>
                                     <p>{relatedShow.overview.slice(0, 100)}...</p>
                                 </div>
+                                
                             </Link>
+                            <CastCrew movieId={relatedShow.id} /> {/* Show Cast for each movie */}
                         </div>
                     ))}
                 </div>
