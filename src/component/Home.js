@@ -124,6 +124,8 @@ import { addMovies, getAllMovies } from "../features/movies/MoviesSlice";
 import MovieListing from "./MovieListing";
 import TrendingMovies from "./TrendingMovies";
 import "./Home.css";
+import TVShows from "./TVShows";
+
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 const totalPages = 8;
@@ -229,8 +231,12 @@ export default function Home() {
 
       {/* Movie Listing with Cast & Crew */}
       <div className="banner-image">
+        
         <MovieListing movies={filteredMovies} loading={loading} />
+        <TVShows/>
       </div>
+    
+
     </>
   );
 }

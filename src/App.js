@@ -4,20 +4,23 @@ import Header from "./component/Header"
 import Footer from "./component/Footer"
 import MovieDetail from "./component/MovieDetail"
 import PageNotFound from "./component/PageNotFound"
-
+import TVShows from "./component/TVShows"
+import TVShowDetail from "./component/TVShowDetail"
 export default function App(){
     return(
         <div className="app">
   <Router>
        <Header/>
-    <div className="container">
-      <Switch>
+                <div className="container">
+                    <Switch>
+                       
                         <Route path="/" exact component={Home} />
-
-    <Route path="/movie/:id"  component={MovieDetail} />
-                        <Route component={PageNotFound} />
+                        <Route path="/tv"  exact component={TVShows } /> {/* TV Shows listing */}
+                        <Route path="/tv/:id" component={TVShowDetail } /> {/* TV Show details */}
+                        <Route path="/movie/:id"  component={MovieDetail} />
+                       <Route component={PageNotFound} />
                         
-     </Switch>
+                    </Switch>
                 </div>
                 <Footer/>
 </Router>

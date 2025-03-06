@@ -1,0 +1,106 @@
+.tv-show-detail-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: var(--background-light);
+}
+
+.tv-show-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.tv-show-poster-detail {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tv-show-info-detail {
+    max-width: 700px;
+    color: var(--text-color-light);
+}
+
+.tv-show-info-detail h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tv-show-info-detail p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.tv-show-info-detail strong {
+    color: #fff;
+}
+
+.tv-show-overview {
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+.related-tv-shows {
+    margin-top: 40px;
+}
+
+.related-tv-shows h2 {
+    font-size: 1.5rem;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+}
+
+.related-tv-shows-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.related-tv-show-card {
+    width: 200px;
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.related-tv-show-card:hover {
+    transform: scale(1.05);
+}
+
+.related-tv-show-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.related-tv-show-info {
+    padding: 10px;
+    color: #fff;
+}
+
+.related-tv-show-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.related-tv-show-info p {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.related-tv-show-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.related-tv-show-link:hover {
+    text-decoration: underline;
+}
