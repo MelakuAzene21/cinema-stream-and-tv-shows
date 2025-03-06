@@ -1,8 +1,10 @@
+
 // import { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import axios from "axios";
 // import { addMovies, getAllMovies } from "../features/movies/MoviesSlice";
 // import MovieListing from "./MovieListing";
+// import TrendingMovies from "./TrendingMovies.js"; // Import trending movies component
 // import "./Home.css";
 
 // const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
@@ -79,6 +81,9 @@
 
 //   return (
 //     <>
+//       {/* Trending Movies Section */}
+//       <TrendingMovies />
+
 //       <div className="filters-container">
 //         {/* Search Bar */}
 //         <input
@@ -111,12 +116,13 @@
 //   );
 // }
 
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addMovies, getAllMovies } from "../features/movies/MoviesSlice";
 import MovieListing from "./MovieListing";
-import TrendingMovies from "./TrendingMovies.js"; // Import trending movies component
+import TrendingMovies from "./TrendingMovies";
 import "./Home.css";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
@@ -221,9 +227,11 @@ export default function Home() {
         </select>
       </div>
 
+      {/* Movie Listing with Cast & Crew */}
       <div className="banner-image">
         <MovieListing movies={filteredMovies} loading={loading} />
       </div>
     </>
   );
 }
+
