@@ -1,0 +1,40 @@
+.trending-section {
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.trending-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.trending-card {
+  padding: 10px;
+  text-align: center;
+}
+
+.trending-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.trending-card img:hover {
+  transform: scale(1.05);
+}
+
+.trending-card p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Loading State */
+.loading-trending {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  padding: 20px;
+}
