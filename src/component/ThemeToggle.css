@@ -1,13 +1,21 @@
 .theme-toggle {
-  padding: 8px 16px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: inherit;
+    transition: color 0.3s ease;
 }
 
 .theme-toggle:hover {
-  background: #555;
+    color: #ff6347; /* Add a color change on hover for better UX */
 }
+
+.theme-toggle span {
+    margin-right: 10px;
+}
+
+/* You can add additional styling here based on your UI design */

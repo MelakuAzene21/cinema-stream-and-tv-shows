@@ -13,7 +13,7 @@
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
-    background-color: #fff;
+    background-color: #1a6b4a00;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -37,8 +37,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #f9f9f9; /* Soft background color */
+    background-color: #1a6b4a00; /* Soft background color */
     padding: 20px;
+    color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
 }
@@ -46,13 +47,12 @@
 .movie-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #333;
+    
     margin-bottom: 15px;
 }
 
 .movie-overview {
     font-size: 1.1rem;
-    color: #555;
     margin-bottom: 20px;
     line-height: 1.6;
 }
@@ -63,7 +63,6 @@
 
 .movie-meta p {
     font-size: 1rem;
-    color: #666;
     margin-bottom: 10px;
     transition: all 0.3s ease;
 }
@@ -84,6 +83,7 @@
     transition: all 0.3s ease;
     width: max-content;
     margin-top: 20px;
+    border-radius :4px;;
 }
 
 .watch-trailer-btn:hover {
@@ -133,4 +133,45 @@ iframe {
   border-radius: 8px;
   width: 100%;
   height: 500px;
+}
+
+/* Related Movies Section */
+.related-movies {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.related-movies h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.related-movies-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.related-movie-card {
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease-in-out;
+}
+
+.related-movie-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.related-movie-card p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.related-movie-card:hover {
+    transform: scale(1.05);
 }
