@@ -1,49 +1,26 @@
-// import { useSelector } from "react-redux"
-// import { getAllMovies } from "../features/movies/MoviesSlice"
-// import MovieCard from './MovieCard'
-// import './MovieListing.css'
-
-//    export const MovieListing=()=>{
-
-//     const movies=useSelector(getAllMovies);
-    
-// return(
-//     <div className="movie-wrapper">
-//   <div className=" movie-list ">
-//     <h2>MOVIES</h2>
-//     <div className="movie-container">
-//         {movies&&movies.length &&
-//                     movies.map(movie=><MovieCard key={movie.id} data={movie} />)}
-//     </div>
-//   </div>
-//     </div>
-// )
-
-// }
-
-
-import { useSelector } from "react-redux";
-import { getAllMovies } from "../features/movies/MoviesSlice";
 import MovieCard from "./MovieCard";
-import SkeletonLoader from "./SkeletonLoader";
 import "./MovieListing.css";
 
-export const MovieListing = ({ loading }) => {
-  const movies = useSelector(getAllMovies);
-
+export const MovieListing = ({ movies, loading }) => {
   return (
     <div className="movie-wrapper">
       <div className="movie-list">
         <h2>MOVIES</h2>
         <div className="movie-container">
-          {loading
-            ? Array(10)
-              .fill()
-              .map((_, index) => <SkeletonLoader key={index} />)
-            : movies.map((movie) => <MovieCard key={movie.id} data={movie} />)}
+          {loading ? (
+            // Show skeleton loaders while loading
+            [...Array(10)].map((_, index) => (
+              <div key={index} className="skeleton-loader"></div>
+            ))
+          ) : movies && movies.length ? (
+            movies.map((movie) => <MovieCard key={movie.id} data={movie} />)
+          ) : (
+            <h3>No movies found</h3>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
+export default MovieListing;

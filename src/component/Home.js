@@ -1,79 +1,72 @@
-
-// import {MovieListing} from "./MovieListing"
-// import { addMovies } from "../features/movies/MoviesSlice";
-// import { useDispatch } from "react-redux";
-// import axios from "axios";
-// // import { API_KEY }from '../common/api/MovieAPIKey'
-
-// const apiKey = 'b994fce496fc0f962a6908ff2a4ba539';
-// export default function Home(){
-
-//   const dispatch=useDispatch();
-  
-//     const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
-
-//     axios.get(apiUrl)
-//         .then(response => {
-//           dispatch(addMovies(response.data.results))
-//           console.log("response from api url", response)
-         
-
-
-
-//         })
-//         .catch(error => {
-//             console.error(`Error fetching movies: ${error}`);
-//         });
-//     return(
-//       <>
-//       <div className="banner-image">
-//         <MovieListing/>
-//       </div>
-//       </>
-
-//     )
-// }
-
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { MovieListing } from "./MovieListing";
-import { addMovies } from "../features/movies/MoviesSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { useState } from "react";
+import { addMovies, getAllMovies } from "../features/movies/MoviesSlice";
+import MovieListing from "./MovieListing";
+import "./Home.css";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
-const totalPages = 8; // Fetch 3 pages (adjust based on requirement)
+const totalPages = 8; // Fetch movies from multiple pages
 
 export default function Home() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true); // Loading state
+  const movies = useSelector(getAllMovies);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         let allMovies = [];
         for (let page = 1; page <= totalPages; page++) {
-          const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
-          const response = await axios.get(apiUrl);
+          const response = await axios.get(
+            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`
+          );
           allMovies = [...allMovies, ...response.data.results];
         }
         dispatch(addMovies(allMovies));
-        setLoading(false); // Stop loading after fetching movies
-
       } catch (error) {
-        console.error(`Error fetching movies: ${error}`);
+        console.error("Error fetching movies:", error);
+      } finally {
         setLoading(false);
-
       }
     };
 
     fetchMovies();
   }, [dispatch]);
 
+  // Search movies with debounce effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery.trim()) {
+        setFilteredMovies(
+          movies.filter((movie) =>
+            movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        );
+      } else {
+        setFilteredMovies(movies);
+      }
+    }, 300); // 300ms delay for performance
+
+    return () => clearTimeout(timer);
+  }, [searchQuery, movies]);
+
   return (
-    <div className="banner-image">
-      <MovieListing loading={loading} />
-    </div>
+    <>
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-bar"
+        />
+      </div>
+      <div className="banner-image">
+        <MovieListing movies={filteredMovies} loading={loading} />
+      </div>
+    </>
   );
 }
