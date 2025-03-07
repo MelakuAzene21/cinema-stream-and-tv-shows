@@ -1,12 +1,31 @@
 Default Light Mode
-body {
-  background-color: #f0f0f0;
-  color: #333;
-  transition: all 0.3s ease-in-out;
+/* Prevent horizontal scrolling */
+
+* {
+  box-sizing: border-box;
+  margin: 4px;
+  padding: 0;
+  max-width: 100%;
 }
+
+
+
+/* Prevent horizontal scrolling */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 
 /* Dark Mode */
 body.dark {
   background-color: #1e1e1e;
   color: #ffffff;
+}
+.container {
+  width: 100%; /* Fits within the viewport */
+  max-width: 1200px; /* Optional to prevent extreme stretching */
+  margin: 0 auto; /* Centers the content */
 }
