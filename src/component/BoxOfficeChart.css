@@ -1,0 +1,24 @@
+.box-office-container {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #f8fafc;
+    font-family: "Poppins", sans-serif;
+    margin-top: 20px;
+}
+
+.loading,
+.error {
+    font-size: 18px;
+    color: #facc15;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .box-office-container {
+        padding: 15px;
+    }
+}
