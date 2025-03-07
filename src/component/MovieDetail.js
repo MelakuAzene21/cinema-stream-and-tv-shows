@@ -99,6 +99,8 @@ import SkeletonMovieDetail from "./SkeletonMovieDetail"; // Skeleton for loading
 import "./MovieDetail.css"; // Updated styles
 import { LanguageContext } from './LanguageContext'; // Import Context
 import Soundtracks from "./Soundtracks";
+import BoxOfficeChart from "./BoxOfficeChart";
+import MovieVideos from "./MovieVideos";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
@@ -177,6 +179,8 @@ const MovieDetail = () => {
                     <button onClick={openModal} className="watch-trailer-btn">
                         Watch Trailer
                     </button>
+                    <BoxOfficeChart movieId={movie.id} />
+                    <MovieVideos movieId={movie.id} />
                     <Soundtracks movieId={movie.id} />
 
                 </div>

@@ -7,6 +7,7 @@ import PageNotFound from "./component/PageNotFound"
 import TVShows from "./component/TVShows"
 import TVShowDetail from "./component/TVShowDetail"
 import ActorProfilePage from "./component/ActorProfilePage"
+import MovieCalendar from "./component/MovieCalendar"
 export default function App(){
     return(
         <div className="app">
@@ -20,11 +21,12 @@ export default function App(){
                         <Route path="/tv/:id" component={TVShowDetail } /> {/* TV Show details */}
                         <Route path="/movie/:id" component={MovieDetail} />
                         <Route path="/actor/:id" component={ActorProfilePage } /> {/* Actor Profile Page */}
+                        <Route path='/calendar' component={MovieCalendar} />
 
                        <Route component={PageNotFound} />
                         
                     </Switch>
-                </div>
+                </div>                
                 <Footer/>
 </Router>
 
