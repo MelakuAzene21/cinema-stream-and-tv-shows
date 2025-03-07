@@ -125,7 +125,8 @@ import MovieListing from "./MovieListing";
 import TrendingMovies from "./TrendingMovies";
 import "./Home.css";
 import TVShows from "./TVShows";
-
+import { useContext } from "react";
+import { LanguageContext } from './LanguageContext'; // Import global language
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 const totalPages = 8;
@@ -138,13 +139,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("");
+  const { language } = useContext(LanguageContext); // Get selected language
 
   // Fetch Genres
   useEffect(() => {
     const fetchGenres = async () => {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=${language}`
         );
         setGenres(response.data.genres);
       } catch (error) {
@@ -152,7 +154,7 @@ export default function Home() {
       }
     };
     fetchGenres();
-  }, []);
+  }, [language]);
 
   // Fetch Movies
   useEffect(() => {
@@ -161,7 +163,7 @@ export default function Home() {
         let allMovies = [];
         for (let page = 1; page <= totalPages; page++) {
           const response = await axios.get(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`
+            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=${language}&page=${page}`
           );
           allMovies = [...allMovies, ...response.data.results];
         }

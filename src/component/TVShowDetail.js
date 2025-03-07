@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams,Link } from 'react-router-dom';
 import axios from 'axios';
 import './TVShowDetail.css'; // Add your styles for this page
 import MovieModal from './MovieModal'; // Assuming MovieModal is used for trailers
 import SkeletonMovieDetail from './SkeletonMovieDetail';
 import CastCrew from './CastCrew.js';
+import { LanguageContext } from './LanguageContext'; // Import global language
 
 const apiKey = 'b994fce496fc0f962a6908ff2a4ba539'; // TMDB API key
 
@@ -14,25 +15,26 @@ const TVShowDetail = () => {
     const [relatedShows, setRelatedShows] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { language } = useContext(LanguageContext); // Get selected language
 
     useEffect(() => {
         const fetchTVShowDetail = async () => {
             try {
                 // Fetch TV show details
                 const showResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=${language}`
                 );
                 setShow(showResponse.data);
 
                 // Fetch related TV shows
                 const relatedResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${apiKey}&language=${language}`
                 );
                 setRelatedShows(relatedResponse.data.results);
 
                 // Fetch trailers if available
                 const trailerResponse = await axios.get(
-                    `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${apiKey}&language=${language}`
                 );
                 const trailer = trailerResponse.data.results.find(
                     (video) => video.type === 'Trailer'
@@ -46,7 +48,7 @@ const TVShowDetail = () => {
         };
 
         fetchTVShowDetail();
-    }, [id]);
+    }, [id,language]);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);

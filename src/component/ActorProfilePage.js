@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import './ActorProfile.css'; // Add your styles for this page
 import SkeletonLoader from './SkeletonLoader'; // For loading state
-
+import { LanguageContext } from './LanguageContext'; // Import global language
+import { useContext } from 'react';
 const apiKey ='b994fce496fc0f962a6908ff2a4ba539'; // TMDb API key
 
 const ActorProfilePage = () => {
@@ -11,12 +12,13 @@ const ActorProfilePage = () => {
     const [actor, setActor] = useState(null);
     const [movies, setMovies] = useState({ acting: [], directing: [] });
     const [loading, setLoading] = useState(true);
+    const { language } = useContext(LanguageContext); // Get selected language
 
     useEffect(() => {
         const fetchActorDetails = async () => {
             try {
                 // Fetch actor's details (biography, name, image)
-                const actorResponse = await axios.get(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}`);
+                const actorResponse = await axios.get(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&language=${language}`);
                 setActor(actorResponse.data);
 
                 // Fetch the movies they acted in and directed
@@ -34,7 +36,7 @@ const ActorProfilePage = () => {
         };
 
         fetchActorDetails();
-    }, [id]);
+    }, [id,language]);
 
     if (loading) return <SkeletonLoader />; // Show loader while data is fetching
 

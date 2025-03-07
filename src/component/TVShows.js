@@ -51,24 +51,26 @@
 
 
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './TVShows.css'; // Import styles for TV Shows
 import CastCrew from './CastCrew';
 import SkeletonMovieDetail from './SkeletonMovieDetail';
-
+import { LanguageContext } from './LanguageContext';
 const apiKey = 'b994fce496fc0f962a6908ff2a4ba539'; // Use your TMDB API key here
 
 const TVShows = () => {
     const [tvShows, setTvShows] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const { language } = useContext(LanguageContext); // Get selected language
 
     const fetchTVShows = async () => {
         try {
             setLoading(true);
             const response = await axios.get(
-                `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&page=${page}`
+                `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&language=${language}&page=${page}`
             );
             setTvShows((prevShows) => [...prevShows, ...response.data.results]);
             setLoading(false);
@@ -80,7 +82,7 @@ const TVShows = () => {
 
     useEffect(() => {
         fetchTVShows();
-    }, [page]); // Fetch TV shows when page changes
+    }, [page,language]); // Fetch TV shows when page changes
 
     return (
         <div className="tv-shows-container">

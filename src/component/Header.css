@@ -20,20 +20,26 @@
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
-.logo:hover {
+.logo span {
   color: var(--accent-color);
 }
 
-.user-profile {
+.logo:hover {
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.header-right {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .user-image {
@@ -42,11 +48,28 @@
   border-radius: 50%;
   border: 2px solid var(--accent-color);
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .user-image:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 10px rgba(250, 204, 21, 0.6);
+}
+
+/* Smooth dropdown */
+.language-switcher select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-color);
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.language-switcher select:hover {
+  background-color: var(--secondary-color);
 }
 
 /* Animation */
@@ -68,7 +91,7 @@
   }
 
   .logo {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .user-image {

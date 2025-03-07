@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./CastCrew.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import { LanguageContext } from './LanguageContext'; // Import global language
+import { useContext } from "react";
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
 const CastCrew = ({ movieId }) => {
     const [cast, setCast] = useState([]);
+    const { language } = useContext(LanguageContext); // Get selected language
 
     useEffect(() => {
         const fetchCast = async () => {
             try {
                 const response = await axios.get(
-                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=${language}`
                 );
                 setCast(response.data.cast.slice(0, 10)); // Show only top 10 actors
             } catch (error) {

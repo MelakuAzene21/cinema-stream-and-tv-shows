@@ -91,12 +91,13 @@
 
 // export default MovieDetail;
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import MovieModal from "./MovieModal"; // Modal for trailer
 import SkeletonMovieDetail from "./SkeletonMovieDetail"; // Skeleton for loading state
 import "./MovieDetail.css"; // Updated styles
+import { LanguageContext } from './LanguageContext'; // Import Context
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
@@ -106,12 +107,13 @@ const MovieDetail = () => {
     const [trailerUrl, setTrailerUrl] = useState("");
     const [relatedMovies, setRelatedMovies] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { language } = useContext(LanguageContext); // Get selected language globally
 
     useEffect(() => {
         const fetchMovieDetail = async () => {
             try {
                 const movieResponse = await axios.get(
-                    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${language}`
                 );
                 setMovie(movieResponse.data);
 
@@ -127,7 +129,7 @@ const MovieDetail = () => {
 
                 // Fetch related movies
                 const relatedResponse = await axios.get(
-                    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=${language}`
                 );
                 setRelatedMovies(relatedResponse.data.results.slice(0, 6)); // Limit to 6 movies
             } catch (error) {
@@ -136,7 +138,7 @@ const MovieDetail = () => {
         };
 
         fetchMovieDetail();
-    }, [id]);
+    }, [id,language]);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -145,6 +147,7 @@ const MovieDetail = () => {
 
     return (
         <div className="movie-detail-container">
+
             <div className="movie-detail">
                 <div className="movie-poster-container">
                     <img

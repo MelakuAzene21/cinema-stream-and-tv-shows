@@ -3,21 +3,22 @@ import axios from "axios";
 import Slider from "react-slick"; // Import carousel package
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { LanguageContext } from "./LanguageContext";
 import "./TrendingMovies.css";
 import SkeletonMovieDetail from "./SkeletonMovieDetail";
-
+import { useContext } from "react";
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
 export default function TrendingMovies() {
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { language } = useContext(LanguageContext); // Get selected language
 
     useEffect(() => {
         const fetchTrendingMovies = async () => {
             try {
                 const response = await axios.get(
-                    `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`
+                    `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&language=${language}`
                 );
                 setTrendingMovies(response.data.results);
             } catch (error) {
@@ -28,7 +29,7 @@ export default function TrendingMovies() {
         };
 
         fetchTrendingMovies();
-    }, []);
+    }, [language]);
 
     const settings = {
         dots: false,
