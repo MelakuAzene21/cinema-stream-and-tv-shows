@@ -98,6 +98,7 @@ import MovieModal from "./MovieModal"; // Modal for trailer
 import SkeletonMovieDetail from "./SkeletonMovieDetail"; // Skeleton for loading state
 import "./MovieDetail.css"; // Updated styles
 import { LanguageContext } from './LanguageContext'; // Import Context
+import Soundtracks from "./Soundtracks";
 
 const apiKey = "b994fce496fc0f962a6908ff2a4ba539";
 
@@ -176,6 +177,8 @@ const MovieDetail = () => {
                     <button onClick={openModal} className="watch-trailer-btn">
                         Watch Trailer
                     </button>
+                    <Soundtracks movieId={movie.id} />
+
                 </div>
             </div>
 
