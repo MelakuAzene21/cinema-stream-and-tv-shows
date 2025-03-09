@@ -4,7 +4,7 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     // Check localStorage for saved theme or default to light mode
-    const storedTheme = localStorage.getItem("theme") || "light";
+    const storedTheme = localStorage.getItem("theme") || "dark";
     const [theme, setTheme] = useState(storedTheme);
 
     // Toggle theme and store preference
